@@ -1,0 +1,8 @@
+1. Check why gun rotation is jerky at angles which are a multiple of 45 degrees.
+2. Change sprites and make the player object to be a square.
+3. Make you player character jump in the direction in which the left analog stick is pointing
+4. Update collision detection to remove the loop and make the player directly snap to the final position.
+5. Learn how to write scripts in gamemaker, so the code can be more modular
+6. Learn when steps functions are called. Would the game run at different speeds on different PCs?
+7. See why tile is snapping wrt a larger grid. Objects do not have this restriction. Moreover they can be resized. If this is indeed a limitation when working with tile sets, make its width and height smaller so as to have greater flexibility during level creation.
+8. Move forward with Shaun spalding tutorial series...
