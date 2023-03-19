@@ -20,6 +20,7 @@
     {"name":"sGun","order":10,"path":"sprites/sGun/sGun.yy",},
     {"name":"oBullet","order":4,"path":"objects/oBullet/oBullet.yy",},
     {"name":"oEnemy","order":2,"path":"objects/oEnemy/oEnemy.yy",},
+    {"name":"sPlayerP","order":12,"path":"sprites/sPlayerP/sPlayerP.yy",},
     {"name":"sPlayerR","order":4,"path":"sprites/sPlayerR/sPlayerR.yy",},
     {"name":"sPlayer","order":2,"path":"sprites/sPlayer/sPlayer.yy",},
     {"name":"sBullet","order":11,"path":"sprites/sBullet/sBullet.yy",},

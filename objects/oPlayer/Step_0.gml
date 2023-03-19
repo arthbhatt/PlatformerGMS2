@@ -10,7 +10,7 @@ KeyReset = keyboard_check_pressed(vk_escape) || gamepad_button_check_pressed(0, 
 var GamepadLHAxis = gamepad_axis_value(0, gp_axislh);
 if(abs(GamepadLHAxis) > 0.2)
 {
-	show_debug_message("LeftHorizontalAxis = {0}", GamepadLHAxis);
+	//show_debug_message("LeftHorizontalAxis = {0}", GamepadLHAxis);
 	if(GamepadLHAxis > 0)
 	{
 		KeyRight = 1;
@@ -93,6 +93,7 @@ if(place_meeting(x, y, oWall))
 
 
 //Animation
+/*
 if(!place_meeting(x, y+1, oWall))
 {
 	sprite_index = sPlayerA;
@@ -115,4 +116,4 @@ else
 if(HoriSpeed != 0)
 {
 	image_xscale = sign(HoriSpeed);
-}
+}*/

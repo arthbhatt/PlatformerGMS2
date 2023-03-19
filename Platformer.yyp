@@ -36,6 +36,7 @@
     {"id":{"name":"sGun","path":"sprites/sGun/sGun.yy",},"order":10,},
     {"id":{"name":"oBullet","path":"objects/oBullet/oBullet.yy",},"order":4,},
     {"id":{"name":"oEnemy","path":"objects/oEnemy/oEnemy.yy",},"order":2,},
+    {"id":{"name":"sPlayerP","path":"sprites/sPlayerP/sPlayerP.yy",},"order":12,},
     {"id":{"name":"sPlayerR","path":"sprites/sPlayerR/sPlayerR.yy",},"order":4,},
     {"id":{"name":"sPlayer","path":"sprites/sPlayer/sPlayer.yy",},"order":2,},
     {"id":{"name":"sBullet","path":"sprites/sBullet/sBullet.yy",},"order":11,},

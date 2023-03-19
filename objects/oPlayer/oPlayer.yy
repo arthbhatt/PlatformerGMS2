@@ -29,12 +29,12 @@
   "properties": [],
   "solid": false,
   "spriteId": {
-    "name": "sPlayer",
-    "path": "sprites/sPlayer/sPlayer.yy",
+    "name": "sPlayerP",
+    "path": "sprites/sPlayerP/sPlayerP.yy",
   },
   "spriteMaskId": {
-    "name": "sPlayer",
-    "path": "sprites/sPlayer/sPlayer.yy",
+    "name": "sPlayerP",
+    "path": "sprites/sPlayerP/sPlayerP.yy",
   },
   "visible": true,
 }

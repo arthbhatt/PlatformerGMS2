@@ -8,3 +8,6 @@ JumpSpeed = 9;
 
 HoriSpeedMax = 10;
 VertSpeedMax = 10;
+
+//Disabling animation for oPlayer
+image_speed = 0;
