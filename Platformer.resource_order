@@ -18,6 +18,8 @@
   "ResourceOrderSettings": [
     {"name":"sWalls","order":5,"path":"sprites/sWalls/sWalls.yy",},
     {"name":"sGun","order":10,"path":"sprites/sGun/sGun.yy",},
+    {"name":"Room4","order":3,"path":"rooms/Room4/Room4.yy",},
+    {"name":"oCamera","order":5,"path":"objects/oCamera/oCamera.yy",},
     {"name":"oBullet","order":4,"path":"objects/oBullet/oBullet.yy",},
     {"name":"oEnemy","order":2,"path":"objects/oEnemy/oEnemy.yy",},
     {"name":"sPlayerP","order":12,"path":"sprites/sPlayerP/sPlayerP.yy",},

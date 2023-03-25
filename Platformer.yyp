@@ -35,6 +35,8 @@
   "resources": [
     {"id":{"name":"sWalls","path":"sprites/sWalls/sWalls.yy",},},
     {"id":{"name":"sGun","path":"sprites/sGun/sGun.yy",},},
+    {"id":{"name":"Room4","path":"rooms/Room4/Room4.yy",},},
+    {"id":{"name":"oCamera","path":"objects/oCamera/oCamera.yy",},},
     {"id":{"name":"oBullet","path":"objects/oBullet/oBullet.yy",},},
     {"id":{"name":"oEnemy","path":"objects/oEnemy/oEnemy.yy",},},
     {"id":{"name":"sPlayerP","path":"sprites/sPlayerP/sPlayerP.yy",},},
@@ -56,6 +58,7 @@
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [
+    {"roomId":{"name":"Room4","path":"rooms/Room4/Room4.yy",},},
     {"roomId":{"name":"Room3","path":"rooms/Room3/Room3.yy",},},
     {"roomId":{"name":"Room2","path":"rooms/Room2/Room2.yy",},},
     {"roomId":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},

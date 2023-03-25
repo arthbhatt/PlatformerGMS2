@@ -10,10 +10,12 @@ HoriAccel = 1;
 Friction = 0.5;
 
 HoldCount = 0;
-BreakAwayVal = 15;
+BreakAwayVal = 0; //15
 
 HoriSpeedMax = 10;
 VertSpeedMax = 10;
 
 //Disabling animation for oPlayer
 image_speed = 0;
+
+//TODO: Add different in-air HoriAccel and Friction

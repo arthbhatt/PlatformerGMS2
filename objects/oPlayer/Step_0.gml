@@ -3,7 +3,7 @@
 //Get Player Input
 KeyLeft = keyboard_check(vk_left);
 KeyRight = keyboard_check(vk_right);
-KeyJump = keyboard_check_pressed(vk_up) || gamepad_button_check_pressed(0, gp_shoulderl);
+KeyJump = keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_shoulderl);
 
 KeyReset = keyboard_check_pressed(vk_escape) || gamepad_button_check_pressed(0, gp_start);
 
@@ -26,8 +26,8 @@ if(abs(GamepadLHAxis) > 0.2)
 //Reset Game State
 if(KeyReset)
 {
-	x = 50;
-	y = 50;
+	x = 200;
+	y = 200;
 }
 
 
@@ -67,6 +67,7 @@ VertSpeed += Grv;
 //show_debug_message("LeftHorizontalAxis = {0}", GamepadLHAxis);
 //show_debug_message("LeftVerticalAxis = {0}", GamepadLVAxis);
 
+//TODO: Try removing magnetic wall and disabling horizontal direction control after doing a wall jump for a few frames
 //Jump
 if(KeyJump)
 {
