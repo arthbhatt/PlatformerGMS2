@@ -35,7 +35,16 @@ if(KeyReset)
 
 //Directional Control Movement
 var _Move = KeyRight - KeyLeft;
-HoriSpeed = _Move * WalkSpeed;
+
+if(_Move != 0) //Horizontal direction key/stick is pressed
+{
+	HoriSpeed += _Move * HoriAccel;
+}
+else //Horizontal direction key/stick is not pressed
+{
+	HoriSpeed -= sign(HoriSpeed) * Friction;
+}
+
 
 //Applying Gravity
 VertSpeed += Grv;
@@ -44,18 +53,29 @@ show_debug_message("LeftHorizontalAxis = {0}", GamepadLHAxis);
 show_debug_message("LeftVerticalAxis = {0}", GamepadLVAxis);
 
 //Jump
-if(KeyJump and place_meeting(x, y+1, oWall))
+if(KeyJump)
 {
-	VertSpeed -= JumpSpeed;
+	//Ground Jump
+	if(place_meeting(x, y+1, oWall))
+	{
+		VertSpeed -= JumpSpeed;
+	}
 	
-	//Apply jump in the direction of left analog stick
-	/*
-	var _JumpAngle = point_direction(0,0,GamepadLHAxis,GamepadLVAxis);
+	//Wall(on Right) Jump
+	else if(place_meeting(x+1, y, oWall))
+	{
+		VertSpeed -= JumpSpeed;
+		HoriSpeed -= JumpSpeed;
+	}
 	
-	VertSpeed += JumpSpeed*GamepadLVAxis;
-	HoriSpeed += JumpSpeed*GamepadLHAxis;
-	*/
+	//Wall(on Left) Jump
+	else if(place_meeting(x-1, y, oWall))
+	{
+		VertSpeed -= JumpSpeed;
+		HoriSpeed += JumpSpeed;
+	}
 }
+
 
 //Apply speed bounds
 if(abs(HoriSpeed) > HoriSpeedMax)
