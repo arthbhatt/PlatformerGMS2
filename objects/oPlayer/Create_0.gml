@@ -6,8 +6,7 @@ Grv = 0.3;
 WalkSpeed = 4;
 JumpSpeed = 20; //9
 
-HoriAccel = 1;
-Friction = 1;
+Inertia = 0.5;
 
 HoriSpeedMax = 10;
 VertSpeedMax = 10;

@@ -36,21 +36,24 @@ if(KeyReset)
 //Directional Control Movement
 var _Move = KeyRight - KeyLeft;
 
-if(_Move != 0) //Horizontal direction key/stick is pressed
+// Inertia calculation.
+if( _Move != 0 )
 {
-	HoriSpeed += _Move * HoriAccel;
+	HoriSpeed = HoriSpeed + (Inertia * _Move);
 }
-else //Horizontal direction key/stick is not pressed
+else
 {
-	HoriSpeed -= sign(HoriSpeed) * Friction;
+	if( abs(HoriSpeed) != 0 )
+	{
+		HoriSpeed = HoriSpeed - (Inertia * sign(HoriSpeed));
+	}
 }
-
 
 //Applying Gravity
 VertSpeed += Grv;
 
-show_debug_message("LeftHorizontalAxis = {0}", GamepadLHAxis);
-show_debug_message("LeftVerticalAxis = {0}", GamepadLVAxis);
+//show_debug_message("LeftHorizontalAxis = {0}", GamepadLHAxis);
+//show_debug_message("LeftVerticalAxis = {0}", GamepadLVAxis);
 
 //Jump
 if(KeyJump)
