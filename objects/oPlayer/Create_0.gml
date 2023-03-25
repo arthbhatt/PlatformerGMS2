@@ -4,7 +4,7 @@ HoriSpeed = 0;
 VertSpeed = 0;
 Grv = 0.3;
 WalkSpeed = 4;
-JumpSpeed = 9;
+JumpSpeed = 20; //9
 
 HoriSpeedMax = 10;
 VertSpeedMax = 10;

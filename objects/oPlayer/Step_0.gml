@@ -8,6 +8,7 @@ KeyJump = keyboard_check_pressed(vk_up) || gamepad_button_check_pressed(0, gp_sh
 KeyReset = keyboard_check_pressed(vk_escape) || gamepad_button_check_pressed(0, gp_start);
 
 var GamepadLHAxis = gamepad_axis_value(0, gp_axislh);
+var GamepadLVAxis = gamepad_axis_value(0, gp_axislv);
 if(abs(GamepadLHAxis) > 0.2)
 {
 	//show_debug_message("LeftHorizontalAxis = {0}", GamepadLHAxis);
@@ -39,10 +40,21 @@ HoriSpeed = _Move * WalkSpeed;
 //Applying Gravity
 VertSpeed += Grv;
 
+show_debug_message("LeftHorizontalAxis = {0}", GamepadLHAxis);
+show_debug_message("LeftVerticalAxis = {0}", GamepadLVAxis);
+
 //Jump
 if(KeyJump and place_meeting(x, y+1, oWall))
 {
-	VertSpeed -=JumpSpeed;
+	VertSpeed -= JumpSpeed;
+	
+	//Apply jump in the direction of left analog stick
+	/*
+	var _JumpAngle = point_direction(0,0,GamepadLHAxis,GamepadLVAxis);
+	
+	VertSpeed += JumpSpeed*GamepadLVAxis;
+	HoriSpeed += JumpSpeed*GamepadLHAxis;
+	*/
 }
 
 //Apply speed bounds
