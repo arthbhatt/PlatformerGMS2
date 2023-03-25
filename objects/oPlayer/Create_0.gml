@@ -6,10 +6,11 @@ Grv = 0.3;
 WalkSpeed = 4;
 JumpSpeed = 20; //9
 
-Inertia = 0.5;
+HoriAccel = 1;
+Friction = 0.5;
 
 HoldCount = 0;
-BreakAwayVal = 4;
+BreakAwayVal = 15;
 
 HoriSpeedMax = 10;
 VertSpeedMax = 10;

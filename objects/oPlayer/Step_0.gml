@@ -39,13 +39,14 @@ var _Move = KeyRight - KeyLeft;
 // Inertia calculation.
 if( _Move != 0 )
 {
-	HoriSpeed = HoriSpeed + (Inertia * _Move);
+	HoriSpeed = HoriSpeed + (HoriAccel * _Move);
 }
 else
 {
+	//TODO: Add a check to see if reducing HoriSpeed by friction does not make it go in opposite direction instead of stopping
 	if( abs(HoriSpeed) != 0 )
 	{
-		HoriSpeed = HoriSpeed - (Inertia * sign(HoriSpeed));
+		HoriSpeed = HoriSpeed - (Friction * sign(HoriSpeed));
 	}
 }
 
