@@ -49,6 +49,17 @@ else
 	}
 }
 
+//Magnetic Wall (when oPlayer is in air)
+if(!place_meeting(x, y+1, oWall) && (place_meeting(x+1, y, oWall) || place_meeting(x-1, y, oWall)) && HoldCount < BreakAwayVal)
+{
+	HoriSpeed = 0;
+	HoldCount++;
+}
+else // Increment break-away build-up
+{
+	HoldCount = 0;
+}
+
 //Applying Gravity
 VertSpeed += Grv;
 

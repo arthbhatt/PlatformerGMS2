@@ -8,6 +8,9 @@ JumpSpeed = 20; //9
 
 Inertia = 0.5;
 
+HoldCount = 0;
+BreakAwayVal = 4;
+
 HoriSpeedMax = 10;
 VertSpeedMax = 10;
 
