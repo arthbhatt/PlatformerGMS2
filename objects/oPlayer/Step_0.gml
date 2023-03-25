@@ -30,28 +30,49 @@ if(KeyReset)
 	y = 200;
 }
 
+//Detect if oPlayer is standing on oWall or not
+var _OnGround = place_meeting(x, y+1, oWall);
+
+//Detect if oPlayer is touching oWall on his left or right
+var _TouchingRightWall = place_meeting(x+1, y, oWall);
+var _TouchingLeftWall = place_meeting(x-1, y, oWall);
 
 //Calculate movement
 
 //Directional Control Movement
 var _Move = KeyRight - KeyLeft;
 
+//Setting inertia values based on where oPlayer is
+var _HAccel = 0;
+var _Friction = 0;
+
+if(_OnGround)
+{
+	_HAccel = GroundAccel;
+	_Friction = GroundFriction;
+}
+else
+{
+	_HAccel = AirAccel;
+	_Friction = AirFriction;
+}
+
 // Inertia calculation.
 if( _Move != 0 )
 {
-	HoriSpeed = HoriSpeed + (HoriAccel * _Move);
+	HoriSpeed = HoriSpeed + (_HAccel * _Move);
 }
 else
 {
 	//TODO: Add a check to see if reducing HoriSpeed by friction does not make it go in opposite direction instead of stopping
 	if( abs(HoriSpeed) != 0 )
 	{
-		HoriSpeed = HoriSpeed - (Friction * sign(HoriSpeed));
+		HoriSpeed = HoriSpeed - (_Friction * sign(HoriSpeed));
 	}
 }
 
 //Magnetic Wall (when oPlayer is in air)
-if(!place_meeting(x, y+1, oWall) && (place_meeting(x+1, y, oWall) || place_meeting(x-1, y, oWall)) && HoldCount < BreakAwayVal)
+if(!_OnGround && (_TouchingRightWall || _TouchingLeftWall) && HoldCount < BreakAwayVal)
 {
 	HoriSpeed = 0;
 	HoldCount++;
@@ -61,8 +82,13 @@ else // Increment break-away build-up
 	HoldCount = 0;
 }
 
-//Applying Gravity
-VertSpeed += Grv;
+//Applying Vertical Acceleration
+var _VAccel = Grv;
+if((_TouchingLeftWall || _TouchingRightWall) && (VertSpeed > 0))
+{
+	_VAccel -= WallFriction;
+}
+VertSpeed += _VAccel;
 
 //show_debug_message("LeftHorizontalAxis = {0}", GamepadLHAxis);
 //show_debug_message("LeftVerticalAxis = {0}", GamepadLVAxis);
@@ -72,20 +98,20 @@ VertSpeed += Grv;
 if(KeyJump)
 {
 	//Ground Jump
-	if(place_meeting(x, y+1, oWall))
+	if(_OnGround)
 	{
 		VertSpeed -= JumpSpeed;
 	}
 	
 	//Wall(on Right) Jump
-	else if(place_meeting(x+1, y, oWall))
+	else if(_TouchingRightWall)
 	{
 		VertSpeed -= JumpSpeed;
 		HoriSpeed -= JumpSpeed;
 	}
 	
 	//Wall(on Left) Jump
-	else if(place_meeting(x-1, y, oWall))
+	else if(_TouchingLeftWall)
 	{
 		VertSpeed -= JumpSpeed;
 		HoriSpeed += JumpSpeed;
