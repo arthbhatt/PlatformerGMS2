@@ -44,17 +44,17 @@ var _Move = KeyRight - KeyLeft;
 
 //Setting inertia values based on where oPlayer is
 var _HAccel = 0;
-var _Friction = 0;
+var _HFriction = 0;
 
 if(_OnGround)
 {
 	_HAccel = GroundAccel;
-	_Friction = GroundFriction;
+	_HFriction = GroundFriction;
 }
 else
 {
 	_HAccel = AirAccel;
-	_Friction = AirFriction;
+	_HFriction = AirFriction;
 }
 
 // Inertia calculation.
@@ -62,14 +62,21 @@ if( _Move != 0 )
 {
 	HoriSpeed = HoriSpeed + (_HAccel * _Move);
 }
-else
+
+if( abs(HoriSpeed) != 0 )
 {
-	//TODO: Add a check to see if reducing HoriSpeed by friction does not make it go in opposite direction instead of stopping
-	if( abs(HoriSpeed) != 0 )
+	//HoriSpeed = HoriSpeed - (_HFriction * sign(HoriSpeed));
+	
+	if(abs(HoriSpeed) > _HFriction)
 	{
-		HoriSpeed = HoriSpeed - (_Friction * sign(HoriSpeed));
+		HoriSpeed -= _HFriction * sign(HoriSpeed);
+	}
+	else
+	{
+		HoriSpeed = 0;
 	}
 }
+
 
 //Magnetic Wall (when oPlayer is in air)
 if(!_OnGround && (_TouchingRightWall || _TouchingLeftWall) && HoldCount < BreakAwayVal)

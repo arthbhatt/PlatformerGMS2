@@ -11,7 +11,7 @@ JumpSpeed = 20; //9
 //This will help us make different oWall objects (Or their children) have different types of surfaces.
 //Some more slippery than the other
 GroundAccel = 2;
-GroundFriction = 5;
+GroundFriction = 1;
 
 //In-air acceleration vars
 AirAccel = 1;
