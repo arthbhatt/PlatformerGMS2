@@ -35,13 +35,25 @@ if(KeyReset)
 
 //Directional Control Movement
 var _Move = KeyRight - KeyLeft;
-HoriSpeed = _Move * WalkSpeed;
+
+// Inertia calculation.
+if( _Move != 0 )
+{
+	HoriSpeed = HoriSpeed + (Inertia * _Move);
+}
+else
+{
+	if( abs(HoriSpeed) != 0 )
+	{
+		HoriSpeed = HoriSpeed - (Inertia * sign(HoriSpeed));
+	}
+}
 
 //Applying Gravity
 VertSpeed += Grv;
 
-show_debug_message("LeftHorizontalAxis = {0}", GamepadLHAxis);
-show_debug_message("LeftVerticalAxis = {0}", GamepadLVAxis);
+//show_debug_message("LeftHorizontalAxis = {0}", GamepadLHAxis);
+//show_debug_message("LeftVerticalAxis = {0}", GamepadLVAxis);
 
 //Jump
 if(KeyJump and place_meeting(x, y+1, oWall))
