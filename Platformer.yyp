@@ -37,6 +37,7 @@
     {"id":{"name":"sGun","path":"sprites/sGun/sGun.yy",},},
     {"id":{"name":"Room4","path":"rooms/Room4/Room4.yy",},},
     {"id":{"name":"oCamera","path":"objects/oCamera/oCamera.yy",},},
+    {"id":{"name":"Room5","path":"rooms/Room5/Room5.yy",},},
     {"id":{"name":"oBullet","path":"objects/oBullet/oBullet.yy",},},
     {"id":{"name":"oEnemy","path":"objects/oEnemy/oEnemy.yy",},},
     {"id":{"name":"sPlayerP","path":"sprites/sPlayerP/sPlayerP.yy",},},
@@ -50,6 +51,7 @@
     {"id":{"name":"sEnemy","path":"sprites/sEnemy/sEnemy.yy",},},
     {"id":{"name":"sClouds","path":"sprites/sClouds/sClouds.yy",},},
     {"id":{"name":"tWalls","path":"tilesets/tWalls/tWalls.yy",},},
+    {"id":{"name":"sWall","path":"sprites/sWall/sWall.yy",},},
     {"id":{"name":"sGrain","path":"sprites/sGrain/sGrain.yy",},},
     {"id":{"name":"sPlayerA","path":"sprites/sPlayerA/sPlayerA.yy",},},
     {"id":{"name":"oPlayer","path":"objects/oPlayer/oPlayer.yy",},},
@@ -58,6 +60,7 @@
     {"id":{"name":"Room1","path":"rooms/Room1/Room1.yy",},},
   ],
   "RoomOrderNodes": [
+    {"roomId":{"name":"Room5","path":"rooms/Room5/Room5.yy",},},
     {"roomId":{"name":"Room4","path":"rooms/Room4/Room4.yy",},},
     {"roomId":{"name":"Room3","path":"rooms/Room3/Room3.yy",},},
     {"roomId":{"name":"Room2","path":"rooms/Room2/Room2.yy",},},

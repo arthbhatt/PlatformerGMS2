@@ -22,7 +22,7 @@ WallFriction = 0.2; //This applies in the veritcal direction
 
 //Magnetic wall vars
 HoldCount = 0;
-BreakAwayVal = 0; //15
+BreakAwayVal = 0; //5
 
 HoriSpeedMax = 15;
 VertSpeedMax = 10;

@@ -26,8 +26,8 @@ if(abs(GamepadLHAxis) > 0.2)
 //Reset Game State
 if(KeyReset)
 {
-	x = 200;
-	y = 200;
+	x = 240;
+	y = 1500;
 }
 
 //Detect if oPlayer is standing on oWall or not
@@ -42,7 +42,7 @@ var _TouchingLeftWall = place_meeting(x-1, y, oWall);
 //Directional Control Movement
 var _Move = KeyRight - KeyLeft;
 
-//Setting inertia values based on where oPlayer is
+//Setting horizontal acceleration and horizontal friction values based on where oPlayer is
 var _HAccel = 0;
 var _HFriction = 0;
 
@@ -63,6 +63,7 @@ if( _Move != 0 )
 	HoriSpeed = HoriSpeed + (_HAccel * _Move);
 }
 
+//Appling horizontal friction
 if( abs(HoriSpeed) != 0 )
 {
 	//HoriSpeed = HoriSpeed - (_HFriction * sign(HoriSpeed));
