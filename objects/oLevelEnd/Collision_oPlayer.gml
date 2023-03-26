@@ -3,4 +3,5 @@
 with( oPlayer )
 {
 	SlideTransition(TRANSITION_MODE.GOTO, other.Target, other.X, other.Y);
+	HookObject = noone;
 }
