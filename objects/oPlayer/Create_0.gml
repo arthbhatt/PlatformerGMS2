@@ -34,3 +34,10 @@ image_speed = 0;
 //Shooter vars
 HandObject = oShooter;
 HookObject = noone;
+
+//Debug start
+RopeAngle = 0;
+PlayerDirection = 0;
+BetweenPlayerDirectionAndRopeAngle = 0;
+TangentToRopeAngle = 0;
+//Debug End

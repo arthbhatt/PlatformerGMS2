@@ -181,6 +181,10 @@ if(abs(VertSpeed) > VertSpeedMax)
 
 
 //Rope Physics
+//Debug start
+var _PlayerDirection = arctan2(-1*VertSpeed, HoriSpeed) * 180/pi;
+//Debug end
+
 if(HookObject != noone)
 {
 	if(HookObject.Hooked == 1)
@@ -190,23 +194,43 @@ if(HookObject != noone)
 		{
 			HookObject.Taught = 1;
 		
-			var _Theta1 = point_direction(HookObject.x, HookObject.y, x, y) * pi/180;
-			var _Theta2 = arctan2(VertSpeed, HoriSpeed); //* 180/pi;
+			var _RopeAngle = point_direction(HookObject.x, HookObject.y, x, y);// * pi/180;
+			var _PlayerDirection = arctan2(-1*VertSpeed, HoriSpeed) * 180/pi;
 		
 			var _PlayerSpeed = sqrt(power(VertSpeed, 2) + power(HoriSpeed, 2));
 		
-			var _AlongRopeSpeed = _PlayerSpeed * cos(_Theta2 - _Theta1);
-			var _TangentToRopeSpeed = _PlayerSpeed * sin(_Theta2 - _Theta1);
+			var _BetweenPlayerDirectionAndRopeAngle = _PlayerDirection - _RopeAngle;
+			
+			var _TangentToRopeSpeed = _PlayerSpeed * dsin(_BetweenPlayerDirectionAndRopeAngle);
+			var _TangentToRopeAngle = _RopeAngle + 90;
 		
-			//if(_AlongRopeSpeed > 0) _AlongRopeSpeed = 0;
+			HoriSpeed = _TangentToRopeSpeed * dcos(_TangentToRopeAngle);
+			VertSpeed = -1* _TangentToRopeSpeed * dsin(_TangentToRopeAngle);
+			
 			//Ignoring AlongRopeSpeed for now
-		
-			HoriSpeed = _TangentToRopeSpeed * cos(_Theta1 + pi/2);
-			VertSpeed = _TangentToRopeSpeed * sin(_Theta1 + pi/2);
+			/*
+			var _AlongRopeSpeed = _PlayerSpeed * dcos(_BetweenPlayerDirectionAndRopeAngle);
+			if(_AlongRopeSpeed < 0) //Moving in the direction of rope, so allow movement in this direction
+			{
+				HoriSpeed += _TangentToRopeSpeed * dsin(_RopeAngle);
+				VertSpeed -= _TangentToRopeSpeed * dcos(_RopeAngle);
+			}
+			*/
+			
+			//Debug start
+			RopeAngle = _RopeAngle;
+			PlayerDirection = _PlayerDirection;
+			BetweenPlayerDirectionAndRopeAngle = _BetweenPlayerDirectionAndRopeAngle;
+			TangentToRopeAngle = _TangentToRopeAngle;
+			//Debug End
+			
 		}	
 	}
 }
 
+//Debug start
+PlayerDirection = _PlayerDirection;
+//Debug end
 
 
 

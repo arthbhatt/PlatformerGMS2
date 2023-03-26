@@ -6,7 +6,7 @@
 function SlideTransition( Mode, Room, x, y )
 {
 	show_debug_message("Called transition script.")
-	/* Verify that the object exists. */
+	/* TODO: Verify that the object exists. */
 	with( oTransition )
 	{
 		TargetRoom = Room
