@@ -15,7 +15,7 @@ GroundFriction = 1;
 
 //In-air acceleration vars
 AirAccel = 1;
-AirFriction = 0.5;
+AirFriction = 0.2;
 
 Grv = 0.3;
 WallFriction = 0.2; //This applies in the veritcal direction
@@ -24,10 +24,13 @@ WallFriction = 0.2; //This applies in the veritcal direction
 HoldCount = 0;
 BreakAwayVal = 0; //5
 
+//Maximum oPlayer speed (It cannot be greater that oPlayer_width+oWall_width. i.e. 128 for now)
 HoriSpeedMax = 15;
 VertSpeedMax = 10;
 
 //Disabling animation for oPlayer
 image_speed = 0;
 
-//TODO: Add different in-air HoriAccel and Friction
+//Shooter vars
+HandObject = oShooter;
+HookObject = noone;

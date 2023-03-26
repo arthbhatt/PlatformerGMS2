@@ -5,6 +5,8 @@ KeyLeft = keyboard_check(vk_left);
 KeyRight = keyboard_check(vk_right);
 KeyJump = keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_shoulderl);
 
+keyShoot = keyboard_check_pressed(ord("E")) || gamepad_button_check_pressed(0, gp_shoulderr);
+
 KeyReset = keyboard_check_pressed(vk_escape) || gamepad_button_check_pressed(0, gp_start);
 
 var GamepadLHAxis = gamepad_axis_value(0, gp_axislh);
@@ -28,6 +30,28 @@ if(KeyReset)
 {
 	x = 240;
 	y = 1500;
+	
+	HandObject.image_index = 0;
+}
+
+//Shooting
+if(keyShoot)
+{
+	HookObject = instance_create_layer(x, y, "Shooter", oHook);
+	with(HookObject)
+	{
+		speed = HookSpeed;
+		direction = other.HandObject.image_angle;
+		
+		image_angle = direction;
+		
+		other.HandObject.image_index = 1;
+	}
+}
+
+if(HookObject != noone)
+{
+	draw_line(x, y, HookObject.x, HookObject.y);
 }
 
 //Detect if oPlayer is standing on oWall or not
@@ -41,6 +65,16 @@ var _TouchingLeftWall = place_meeting(x-1, y, oWall);
 
 //Directional Control Movement
 var _Move = KeyRight - KeyLeft;
+
+//Change holding angle of in-hand object based on the direction in which oPlayer is facing
+if(_Move > 0)
+{
+	HandObject.HoldingAngle = 0;
+}
+else if(_Move < 0)
+{
+	HandObject.HoldingAngle = 180;
+}
 
 //Setting horizontal acceleration and horizontal friction values based on where oPlayer is
 var _HAccel = 0;
@@ -140,6 +174,7 @@ if(abs(VertSpeed) > VertSpeedMax)
 
 
 //Update Player Coords
+//The collision detection would fail if the object speeds are way high. Do a check based on "if a point lies on a line"
 //Horizontal Collision
 if(place_meeting(x+HoriSpeed, y, oWall))
 {
