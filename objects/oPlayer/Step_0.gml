@@ -6,6 +6,7 @@ KeyRight = keyboard_check(vk_right);
 KeyJump = keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_shoulderl);
 
 keyShoot = keyboard_check_pressed(ord("E")) || gamepad_button_check_pressed(0, gp_shoulderr);
+keyRopeRelease = keyboard_check_released(ord("E")) || gamepad_button_check_released(0, gp_shoulderr);
 
 KeyReset = keyboard_check_pressed(vk_escape) || gamepad_button_check_pressed(0, gp_start);
 
@@ -35,7 +36,7 @@ if(KeyReset)
 }
 
 //Shooting
-if(keyShoot)
+if(keyShoot && (HandObject != noone)) //TODO: make a check to see if HandObject is oShooter
 {
 	HookObject = instance_create_layer(x, y, "Shooter", oHook);
 	with(HookObject)
@@ -49,9 +50,14 @@ if(keyShoot)
 	}
 }
 
+//Check for rope holding
 if(HookObject != noone)
 {
-	draw_line(x, y, HookObject.x, HookObject.y);
+	if(keyRopeRelease)
+	{
+		HookObject = noone;
+		HandObject.image_index = 0;
+	}
 }
 
 //Detect if oPlayer is standing on oWall or not
@@ -114,6 +120,7 @@ if( abs(HoriSpeed) != 0 )
 
 
 //Magnetic Wall (when oPlayer is in air)
+//TODO: Also try snapping oPlayer to the Wall if it is within a certain distance of it and moving in its direction.
 if(!_OnGround && (_TouchingRightWall || _TouchingLeftWall) && HoldCount < BreakAwayVal)
 {
 	HoriSpeed = 0;
@@ -173,8 +180,38 @@ if(abs(VertSpeed) > VertSpeedMax)
 }
 
 
+//Rope Physics
+if(HookObject != noone)
+{
+	if(HookObject.Hooked == 1)
+	{
+		//Tip: lengthdir_x lengthdir_y
+		if(point_distance(HookObject.x, HookObject.y, x, y) >= HookObject.RopeLength)
+		{
+			HookObject.Taught = 1;
+		
+			var _Theta1 = point_direction(HookObject.x, HookObject.y, x, y) * pi/180;
+			var _Theta2 = arctan2(VertSpeed, HoriSpeed); //* 180/pi;
+		
+			var _PlayerSpeed = sqrt(power(VertSpeed, 2) + power(HoriSpeed, 2));
+		
+			var _AlongRopeSpeed = _PlayerSpeed * cos(_Theta2 - _Theta1);
+			var _TangentToRopeSpeed = _PlayerSpeed * sin(_Theta2 - _Theta1);
+		
+			//if(_AlongRopeSpeed > 0) _AlongRopeSpeed = 0;
+			//Ignoring AlongRopeSpeed for now
+		
+			HoriSpeed = _TangentToRopeSpeed * cos(_Theta1 + pi/2);
+			VertSpeed = _TangentToRopeSpeed * sin(_Theta1 + pi/2);
+		}	
+	}
+}
+
+
+
+
 //Update Player Coords
-//The collision detection would fail if the object speeds are way high. Do a check based on "if a point lies on a line"
+//The collision detection would fail if the object speeds are way high(More than 128 pixels/frame). Do a check based on "if a point lies on a line"
 //Horizontal Collision
 if(place_meeting(x+HoriSpeed, y, oWall))
 {
