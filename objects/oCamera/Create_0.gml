@@ -4,7 +4,7 @@ Follow = oPlayer;
 ViewWHalf = camera_get_view_width(Cam) * 0.5;
 ViewHHalf = camera_get_view_height(Cam) * 0.5;
 xTo = xstart;
-xTo = ystart;
+yTo = ystart;
 
 MaxHPanSpeed = 30;
 MaxVPanSpeed = 30;
