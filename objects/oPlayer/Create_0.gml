@@ -36,8 +36,11 @@ HandObject = oShooter;
 HookObject = noone;
 
 //Debug start
+/*
+AlongRopeSpeed = 0;
 RopeAngle = 0;
 PlayerDirection = 0;
 BetweenPlayerDirectionAndRopeAngle = 0;
 TangentToRopeAngle = 0;
+*/
 //Debug End

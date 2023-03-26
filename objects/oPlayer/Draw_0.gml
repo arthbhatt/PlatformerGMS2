@@ -7,21 +7,14 @@ if(HookObject != noone)
 	
 	//Debug start
 	if(HookObject.Taught == 1)
-	{
+	{	
 		DrawLineAtAngle(HookObject, RopeAngle, c_blue);
-		DrawLineAtAngle(self, RopeAngle, c_blue);
+		DrawLineAtAngle(self, RopeAngle, c_blue, AlongRopeSpeed*100);
 		DrawLineAtAngle(self, BetweenPlayerDirectionAndRopeAngle, c_yellow);
 		DrawLineAtAngle(self, TangentToRopeAngle);
+		DrawLineAtAngle(self, PlayerDirection, c_olive);
 	}
 	//Debug end
 }
-
-//Debug start
-
-//Ref x-axis
-DrawLineAtAngle(self, 0, c_black, 300)
-
-DrawLineAtAngle(self, PlayerDirection, c_olive);
-//Debug end
 
 draw_self();

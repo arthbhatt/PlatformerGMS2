@@ -188,9 +188,10 @@ var _PlayerDirection = arctan2(-1*VertSpeed, HoriSpeed) * 180/pi;
 if(HookObject != noone)
 {
 	if(HookObject.Hooked == 1)
-	{
-		//Tip: lengthdir_x lengthdir_y
-		if(point_distance(HookObject.x, HookObject.y, x, y) >= HookObject.RopeLength)
+	{	
+		var _PlayerDistanceFromHook = point_distance(HookObject.x, HookObject.y, x, y);
+		
+		if(_PlayerDistanceFromHook >= HookObject.RopeLength)
 		{
 			HookObject.Taught = 1;
 		
@@ -207,17 +208,16 @@ if(HookObject != noone)
 			HoriSpeed = _TangentToRopeSpeed * dcos(_TangentToRopeAngle);
 			VertSpeed = -1* _TangentToRopeSpeed * dsin(_TangentToRopeAngle);
 			
-			//Ignoring AlongRopeSpeed for now
-			/*
 			var _AlongRopeSpeed = _PlayerSpeed * dcos(_BetweenPlayerDirectionAndRopeAngle);
 			if(_AlongRopeSpeed < 0) //Moving in the direction of rope, so allow movement in this direction
 			{
-				HoriSpeed += _TangentToRopeSpeed * dsin(_RopeAngle);
-				VertSpeed -= _TangentToRopeSpeed * dcos(_RopeAngle);
+				HoriSpeed += _AlongRopeSpeed * dcos(_RopeAngle);
+				VertSpeed -= _AlongRopeSpeed * dsin(_RopeAngle);
 			}
-			*/
+			
 			
 			//Debug start
+			AlongRopeSpeed = _AlongRopeSpeed;
 			RopeAngle = _RopeAngle;
 			PlayerDirection = _PlayerDirection;
 			BetweenPlayerDirectionAndRopeAngle = _BetweenPlayerDirectionAndRopeAngle;
