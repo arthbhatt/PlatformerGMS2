@@ -242,7 +242,7 @@ y += VertSpeed;
 if(place_meeting(x, y, oWall)) 
 {
 	show_debug_message("Wall Clipping detected!!!"); 
-	game_end();
+	//game_end();
 }
 
 
