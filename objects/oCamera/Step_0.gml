@@ -8,8 +8,21 @@ if(instance_exists(Follow))
 }
 
 //Update object position
-x += (xTo - x)/25;
-y += (yTo - y)/25;
+var _xShift = (xTo - x)/25;
+var _yShift = (yTo - y)/25;
+
+if(_xShift > MaxHPanSpeed)
+{
+	_xShift = MaxHPanSpeed;
+}
+
+if(_yShift > MaxVPanSpeed)
+{
+	_yShift = MaxVPanSpeed;
+}
+
+x += _xShift;
+y += _yShift;
 
 x = clamp(x, ViewWHalf, room_width-ViewWHalf);
 y = clamp(y, ViewHHalf, room_height-ViewHHalf);

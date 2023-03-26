@@ -1,12 +1,12 @@
 /// @description Update Gun Position
 
 x = oPlayer.x;
-y = oPlayer.y-10;
+y = oPlayer.y;
 
 //Point the gun in the direction where the player is facing
 //image_xscale = oPlayer.image_xscale;
 
-image_angle = 0;
+image_angle = HoldingAngle;
 
 //Get gamepad R analog stick value
 var GamepadRHAxis = gamepad_axis_value(0, gp_axisrh);
