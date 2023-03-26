@@ -5,8 +5,6 @@ KeyLeft = keyboard_check(vk_left);
 KeyRight = keyboard_check(vk_right);
 KeyJump = keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_shoulderl);
 
-KeyReset = keyboard_check_pressed(vk_escape) || gamepad_button_check_pressed(0, gp_start);
-
 var GamepadLHAxis = gamepad_axis_value(0, gp_axislh);
 var GamepadLVAxis = gamepad_axis_value(0, gp_axislv);
 if(abs(GamepadLHAxis) > 0.2)
@@ -22,14 +20,6 @@ if(abs(GamepadLHAxis) > 0.2)
 	}
 	
 }
-
-//Reset Game State
-if(KeyReset)
-{
-	x = 200;
-	y = 200;
-}
-
 
 //Calculate movement
 
@@ -136,7 +126,7 @@ y += VertSpeed;
 if(place_meeting(x, y, oWall)) 
 {
 	show_debug_message("Wall Clipping detected!!!"); 
-	game_end();
+	//game_end();
 }
 
 
