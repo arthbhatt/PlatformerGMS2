@@ -75,11 +75,11 @@ var _Move = KeyRight - KeyLeft;
 //Change holding angle of in-hand object based on the direction in which oPlayer is facing
 if(_Move > 0)
 {
-	HandObject.HoldingAngle = 0;
+	HandObject.HoldingAngle = 45; //0
 }
 else if(_Move < 0)
 {
-	HandObject.HoldingAngle = 180;
+	HandObject.HoldingAngle = 180 - 45; //180
 }
 
 //Setting horizontal acceleration and horizontal friction values based on where oPlayer is
