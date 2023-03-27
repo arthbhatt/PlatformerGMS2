@@ -121,6 +121,7 @@ if( abs(HoriSpeed) != 0 )
 
 //Magnetic Wall (when oPlayer is in air)
 //TODO: Also try snapping oPlayer to the Wall if it is within a certain distance of it and moving in its direction.
+//TODO: Try removing magnetic wall and disabling horizontal direction control after doing a wall jump for a few frames
 if(!_OnGround && (_TouchingRightWall || _TouchingLeftWall) && HoldCount < BreakAwayVal)
 {
 	HoriSpeed = 0;
@@ -139,48 +140,60 @@ if((_TouchingLeftWall || _TouchingRightWall) && (VertSpeed > 0))
 }
 VertSpeed += _VAccel;
 
-//show_debug_message("LeftHorizontalAxis = {0}", GamepadLHAxis);
-//show_debug_message("LeftVerticalAxis = {0}", GamepadLVAxis);
-
-//TODO: Try removing magnetic wall and disabling horizontal direction control after doing a wall jump for a few frames
 //Jump
 if(KeyJump)
 {
-	//Ground Jump
-	if(_OnGround)
+	var _IsNormalJumpPossible = 0;
+	
+	//Rope Tug Jump
+	if(HookObject != noone)
 	{
-		VertSpeed -= JumpSpeed;
+		if(HookObject.Hooked == 1) && (HookObject.Taught == 1)
+		{	
+			show_debug_message("RopeTugJump");
+			
+			_IsNormalJumpPossible = 0;
+			AlongRopeSpeed = -1 * RopeTugJumpSpeed;
+			
+			HoriSpeed += AlongRopeSpeed * dcos(RopeAngle);
+			VertSpeed -= AlongRopeSpeed * dsin(RopeAngle);
+		}
+		else
+		{
+			_IsNormalJumpPossible = 1;
+		}
+	}
+	else
+	{
+		_IsNormalJumpPossible = 1;
 	}
 	
-	//Wall(on Right) Jump
-	else if(_TouchingRightWall)
+	if(_IsNormalJumpPossible == 1)
 	{
-		VertSpeed -= JumpSpeed;
-		HoriSpeed -= JumpSpeed;
-	}
+		show_debug_message("NormalJump attempted");
+		//Ground Jump
+		if(_OnGround)
+		{
+			VertSpeed -= JumpSpeed;
+		}
 	
-	//Wall(on Left) Jump
-	else if(_TouchingLeftWall)
-	{
-		VertSpeed -= JumpSpeed;
-		HoriSpeed += JumpSpeed;
+		//Wall(on Right) Jump
+		else if(_TouchingRightWall)
+		{
+			VertSpeed -= JumpSpeed;
+			HoriSpeed -= JumpSpeed;
+		}
+	
+		//Wall(on Left) Jump
+		else if(_TouchingLeftWall)
+		{
+			VertSpeed -= JumpSpeed;
+			HoriSpeed += JumpSpeed;
+		}
 	}
 }
 
-
-//Apply speed bounds
-if(abs(HoriSpeed) > HoriSpeedMax)
-{
-	HoriSpeed = sign(HoriSpeed) * HoriSpeedMax;
-}
-
-if(abs(VertSpeed) > VertSpeedMax)
-{
-	VertSpeed = sign(VertSpeed) * VertSpeedMax;
-}
-
-
-//Rope Physics
+//Rope Swinging Physics
 if(HookObject != noone)
 {
 	if(HookObject.Hooked == 1)
@@ -216,7 +229,23 @@ if(HookObject != noone)
 			}
 			
 		}	
+		else
+		{
+			HookObject.Taught = 0;
+		}
 	}
+}
+
+
+//Apply speed bounds
+if(abs(HoriSpeed) > HoriSpeedMax)
+{
+	HoriSpeed = sign(HoriSpeed) * HoriSpeedMax;
+}
+
+if(abs(VertSpeed) > VertSpeedMax)
+{
+	VertSpeed = sign(VertSpeed) * VertSpeedMax;
 }
 
 

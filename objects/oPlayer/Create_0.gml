@@ -39,6 +39,8 @@ HookObject = noone;
 PlayerSpeed = 0;
 PlayerDirection = 0;
 
+RopeTugJumpSpeed = 20;
+
 AlongRopeSpeed = 0;
 RopeAngle = 0;
 BetweenPlayerDirectionAndRopeAngle = 0;
