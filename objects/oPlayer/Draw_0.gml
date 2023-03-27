@@ -6,6 +6,7 @@ if(HookObject != noone)
 	draw_line_width_colour(x, y, HookObject.x, HookObject.y, 10, c_white, c_white);
 	
 	//Debug start
+	/*
 	if(HookObject.Taught == 1)
 	{	
 		DrawLineAtAngle(HookObject, RopeAngle, c_blue);
@@ -14,6 +15,7 @@ if(HookObject != noone)
 		DrawLineAtAngle(self, TangentToRopeAngle);
 		DrawLineAtAngle(self, PlayerDirection, c_olive);
 	}
+	*/
 	//Debug end
 }
 

@@ -181,10 +181,6 @@ if(abs(VertSpeed) > VertSpeedMax)
 
 
 //Rope Physics
-//Debug start
-var _PlayerDirection = arctan2(-1*VertSpeed, HoriSpeed) * 180/pi;
-//Debug end
-
 if(HookObject != noone)
 {
 	if(HookObject.Hooked == 1)
@@ -195,43 +191,33 @@ if(HookObject != noone)
 		{
 			HookObject.Taught = 1;
 		
-			var _RopeAngle = point_direction(HookObject.x, HookObject.y, x, y);// * pi/180;
-			var _PlayerDirection = arctan2(-1*VertSpeed, HoriSpeed) * 180/pi;
-		
-			var _PlayerSpeed = sqrt(power(VertSpeed, 2) + power(HoriSpeed, 2));
-		
-			var _BetweenPlayerDirectionAndRopeAngle = _PlayerDirection - _RopeAngle;
+			RopeAngle = point_direction(HookObject.x, HookObject.y, x, y);// * pi/180;
 			
-			var _TangentToRopeSpeed = _PlayerSpeed * dsin(_BetweenPlayerDirectionAndRopeAngle);
-			var _TangentToRopeAngle = _RopeAngle + 90;
+			PlayerDirection = arctan2(-1*VertSpeed, HoriSpeed) * 180/pi;
+			PlayerSpeed = sqrt(power(VertSpeed, 2) + power(HoriSpeed, 2));
 		
-			HoriSpeed = _TangentToRopeSpeed * dcos(_TangentToRopeAngle);
-			VertSpeed = -1* _TangentToRopeSpeed * dsin(_TangentToRopeAngle);
+			BetweenPlayerDirectionAndRopeAngle = PlayerDirection - RopeAngle;
 			
-			var _AlongRopeSpeed = _PlayerSpeed * dcos(_BetweenPlayerDirectionAndRopeAngle);
-			if(_AlongRopeSpeed < 0) //Moving in the direction of rope, so allow movement in this direction
+			TangentToRopeSpeed = PlayerSpeed * dsin(BetweenPlayerDirectionAndRopeAngle);
+			TangentToRopeAngle = RopeAngle + 90;
+		
+			HoriSpeed = TangentToRopeSpeed * dcos(TangentToRopeAngle);
+			VertSpeed = -1* TangentToRopeSpeed * dsin(TangentToRopeAngle);
+			
+			AlongRopeSpeed = PlayerSpeed * dcos(BetweenPlayerDirectionAndRopeAngle);
+			if(AlongRopeSpeed < 0) //Moving in the direction of rope, so allow movement in this direction
 			{
-				HoriSpeed += _AlongRopeSpeed * dcos(_RopeAngle);
-				VertSpeed -= _AlongRopeSpeed * dsin(_RopeAngle);
+				HoriSpeed += AlongRopeSpeed * dcos(RopeAngle);
+				VertSpeed -= AlongRopeSpeed * dsin(RopeAngle);
 			}
-			
-			
-			//Debug start
-			AlongRopeSpeed = _AlongRopeSpeed;
-			RopeAngle = _RopeAngle;
-			PlayerDirection = _PlayerDirection;
-			BetweenPlayerDirectionAndRopeAngle = _BetweenPlayerDirectionAndRopeAngle;
-			TangentToRopeAngle = _TangentToRopeAngle;
-			//Debug End
+			else
+			{
+				AlongRopeSpeed = 0;
+			}
 			
 		}	
 	}
 }
-
-//Debug start
-PlayerDirection = _PlayerDirection;
-//Debug end
-
 
 
 //Update Player Coords
