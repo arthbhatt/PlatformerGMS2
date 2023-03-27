@@ -2,7 +2,7 @@
 // You can write your code in this editor
 
 if(Hooked == 0)
-{
+{	
 	speed = 0;
 	Hooked = 1;
 

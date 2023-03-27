@@ -200,6 +200,7 @@ if(HookObject != noone)
 	{	
 		var _PlayerDistanceFromHook = point_distance(HookObject.x, HookObject.y, x, y);
 		
+		//Check to see if the rope is taught
 		if(_PlayerDistanceFromHook >= HookObject.RopeLength)
 		{
 			HookObject.Taught = 1;
@@ -211,12 +212,14 @@ if(HookObject != noone)
 		
 			BetweenPlayerDirectionAndRopeAngle = PlayerDirection - RopeAngle;
 			
+			//Keep the speed tangent to rope's direction as it is
 			TangentToRopeSpeed = PlayerSpeed * dsin(BetweenPlayerDirectionAndRopeAngle);
 			TangentToRopeAngle = RopeAngle + 90;
 		
 			HoriSpeed = TangentToRopeSpeed * dcos(TangentToRopeAngle);
 			VertSpeed = -1* TangentToRopeSpeed * dsin(TangentToRopeAngle);
 			
+			// Allow the rope to go slack, if moving along its direction
 			AlongRopeSpeed = PlayerSpeed * dcos(BetweenPlayerDirectionAndRopeAngle);
 			if(AlongRopeSpeed < 0) //Moving in the direction of rope, so allow movement in this direction
 			{
