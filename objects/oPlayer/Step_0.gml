@@ -3,10 +3,10 @@
 //Get Player Input
 KeyLeft = keyboard_check(vk_left);
 KeyRight = keyboard_check(vk_right);
-KeyJump = keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_shoulderl);
+KeyJump = keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_shoulderlb); //gp_shoulderl
 
-keyShoot = keyboard_check_pressed(ord("E")) || gamepad_button_check_pressed(0, gp_shoulderr);
-keyRopeRelease = keyboard_check_released(ord("E")) || gamepad_button_check_released(0, gp_shoulderr);
+keyShoot = keyboard_check_pressed(ord("E")) || gamepad_button_check_pressed(0, gp_shoulderrb);
+keyRopeRelease = keyboard_check_released(ord("E")) || gamepad_button_check_released(0, gp_shoulderrb);
 
 KeyReset = keyboard_check_pressed(vk_escape) || gamepad_button_check_pressed(0, gp_start);
 
@@ -55,6 +55,7 @@ if(HookObject != noone)
 {
 	if(keyRopeRelease)
 	{
+		instance_destroy(HookObject);
 		HookObject = noone;
 		HandObject.image_index = 0;
 	}

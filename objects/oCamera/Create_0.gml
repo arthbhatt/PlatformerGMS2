@@ -6,5 +6,5 @@ ViewHHalf = camera_get_view_height(Cam) * 0.5;
 xTo = xstart;
 yTo = ystart;
 
-MaxHPanSpeed = 30;
-MaxVPanSpeed = 30;
+MaxHPanSpeed = 128;
+MaxVPanSpeed = 128;

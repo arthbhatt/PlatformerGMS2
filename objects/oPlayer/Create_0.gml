@@ -17,7 +17,7 @@ GroundFriction = 1;
 AirAccel = 1;
 AirFriction = 0.2;
 
-Grv = 0.3;
+Grv = 0.9;
 WallFriction = 0.2; //This applies in the veritcal direction
 
 //Magnetic wall vars
@@ -25,8 +25,8 @@ HoldCount = 0;
 BreakAwayVal = 0; //5
 
 //Maximum oPlayer speed (It cannot be greater that oPlayer_width+oWall_width. i.e. 128 for now)
-HoriSpeedMax = 15;
-VertSpeedMax = 10;
+HoriSpeedMax = 20;
+VertSpeedMax = 20;
 
 //Disabling animation for oPlayer
 image_speed = 0;
