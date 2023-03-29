@@ -25,14 +25,14 @@ HoldCount = 0;
 BreakAwayVal = 0; //5
 
 //Maximum oPlayer speed (It cannot be greater that oPlayer_width+oWall_width. i.e. 128 for now)
-HoriSpeedMax = 20;
-VertSpeedMax = 20;
+HoriSpeedMax = 30;
+VertSpeedMax = 30;
 
 //Disabling animation for oPlayer
 image_speed = 0;
 
 //Shooter vars
-HandObject = oShooter;
+HandObject = instance_create_layer(x, y, "Shooter", oShooter);//oShooter
 HookObject = noone;
 
 //Rope Physics vars
@@ -46,3 +46,6 @@ RopeAngle = 0;
 BetweenPlayerDirectionAndRopeAngle = 0;
 TangentToRopeSpeed = 0;
 TangentToRopeAngle = 0;
+
+//Level transition vars
+TransitionObject = instance_create_layer(x, y, "Instances", oTransition);

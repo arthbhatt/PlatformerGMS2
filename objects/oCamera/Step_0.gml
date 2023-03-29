@@ -8,8 +8,8 @@ if(instance_exists(Follow))
 }
 
 //Update object position
-var _xShift = (xTo - x)/25;
-var _yShift = (yTo - y)/25;
+var _xShift = (xTo - x)/10; //25
+var _yShift = (yTo - y)/10; //25
 
 if(_xShift > MaxHPanSpeed)
 {

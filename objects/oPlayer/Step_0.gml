@@ -29,8 +29,8 @@ if(abs(GamepadLHAxis) > 0.2)
 //Reset Game State
 if(KeyReset)
 {
-	x = 240;
-	y = 1500;
+	x = 300;
+	y = 4600;
 	
 	HandObject.image_index = 0;
 }
