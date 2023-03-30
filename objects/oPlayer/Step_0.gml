@@ -3,12 +3,14 @@
 //Get Player Input
 KeyLeft = keyboard_check(vk_left);
 KeyRight = keyboard_check(vk_right);
-KeyJump = keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_shoulderlb) || gamepad_button_check_pressed(0, gp_shoulderl) || gamepad_button_check_pressed(0, gp_face1); //gp_shoulderl
+KeyJump = keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_shoulderl) || gamepad_button_check_pressed(0, gp_face1); //gp_shoulderl
 
 keyShoot = keyboard_check_pressed(ord("E")) || gamepad_button_check_pressed(0, gp_shoulderrb) || gamepad_button_check_pressed(0, gp_shoulderr) || gamepad_button_check_pressed(0, gp_face3);
 keyRopeRelease = keyboard_check_released(ord("E")) || gamepad_button_check_released(0, gp_shoulderrb)  || gamepad_button_check_released(0, gp_shoulderr) || gamepad_button_check_released(0, gp_face3);
 
 KeyReset = keyboard_check_pressed(vk_escape) || gamepad_button_check_pressed(0, gp_start);
+
+KeyDive = gamepad_button_check_pressed(0, gp_shoulderlb);
 
 var GamepadLHAxis = gamepad_axis_value(0, gp_axislh);
 var GamepadLVAxis = gamepad_axis_value(0, gp_axislv);
@@ -134,12 +136,18 @@ else // Increment break-away build-up
 }
 
 //Applying Vertical Acceleration
-var _VAccel = Grv;
+var _VAccel = (KeyDive) ?3*Grv :Grv;
 if((_TouchingLeftWall || _TouchingRightWall) && (VertSpeed > 0))
 {
 	_VAccel -= WallFriction;
 }
 VertSpeed += _VAccel;
+
+//Dive
+if(KeyDive)
+{
+	VertSpeed += DiveSpeed;
+}
 
 //Jump
 if(KeyJump)

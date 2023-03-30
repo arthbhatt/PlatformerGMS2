@@ -6,6 +6,8 @@ VertSpeed = 0;
 
 JumpSpeed = 20; //9
 
+DiveSpeed = 25;
+
 //Acceleration(intertia) vars
 //TODO: Get this value from the oWall object that oPlayer is standing on.
 //This will help us make different oWall objects (Or their children) have different types of surfaces.
