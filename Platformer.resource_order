@@ -1,6 +1,8 @@
 {
   "FolderOrderSettings": [],
   "ResourceOrderSettings": [
+    {"name":"Room510","order":5,"path":"rooms/Room510/Room510.yy",},
+    {"name":"Room9","order":4,"path":"rooms/Room9/Room9.yy",},
     {"name":"Room7","order":2,"path":"rooms/Room7/Room7.yy",},
     {"name":"Room8","order":3,"path":"rooms/Room8/Room8.yy",},
     {"name":"DrawLineAtAngle","order":1,"path":"scripts/DrawLineAtAngle/DrawLineAtAngle.yy",},
