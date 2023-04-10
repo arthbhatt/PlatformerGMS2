@@ -51,3 +51,6 @@ TangentToRopeAngle = 0;
 
 //Level transition vars
 TransitionObject = instance_create_layer(x, y, "Instances", oTransition);
+
+//Mass vars
+Mass = 1000;

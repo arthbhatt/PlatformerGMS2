@@ -5,8 +5,10 @@
     {"name":"Room9","order":4,"path":"rooms/Room9/Room9.yy",},
     {"name":"oCollidable","order":1,"path":"objects/oCollidable/oCollidable.yy",},
     {"name":"Room7","order":2,"path":"rooms/Room7/Room7.yy",},
+    {"name":"oBox","order":2,"path":"objects/oBox/oBox.yy",},
     {"name":"Room8","order":3,"path":"rooms/Room8/Room8.yy",},
     {"name":"DrawLineAtAngle","order":1,"path":"scripts/DrawLineAtAngle/DrawLineAtAngle.yy",},
+    {"name":"sBox","order":1,"path":"sprites/sBox/sBox.yy",},
     {"name":"Room6","order":1,"path":"rooms/Room6/Room6.yy",},
   ],
 }

@@ -155,7 +155,7 @@ else // Increment break-away build-up
 }
 
 //Applying Vertical Acceleration
-var _VAccel = (KeyDive) ?3*Grv :Grv;
+var _VAccel = Grv;
 if((_TouchingLeftWall || _TouchingRightWall) && (VertSpeed > 0))
 {
 	_VAccel -= WallFriction;
@@ -226,6 +226,15 @@ if(HookObject != noone)
 {
 	if(HookObject.Hooked == 1)
 	{	
+		if(HookObject.HookedObject.object_index == oWall)
+		{
+			show_debug_message("Wall Object Hooked!");
+		}
+		else
+		{
+			show_debug_message("Box Object Hooked!");
+		}
+		
 		var _PlayerDistanceFromHook = point_distance(HookObject.x, HookObject.y, x, y);
 		
 		//Check to see if the rope is taught
@@ -249,15 +258,30 @@ if(HookObject != noone)
 			
 			// Allow the rope to go slack, if moving along its direction
 			AlongRopeSpeed = PlayerSpeed * dcos(BetweenPlayerDirectionAndRopeAngle);
-			if(AlongRopeSpeed < 0) //Moving in the direction of rope, so allow movement in this direction
+			 //Moving opposite to the direction of rope, so apply momentum conservation
+			 //TODO: Consider HookedObject's speed. So, if oPlayer fires hook at a heavy moving object, it should pull oPlayer along
+			if(AlongRopeSpeed > 0)
 			{
-				HoriSpeed += AlongRopeSpeed * dcos(RopeAngle);
-				VertSpeed -= AlongRopeSpeed * dsin(RopeAngle);
+				if(HookObject.HookedObject.object_index == oBox)
+				{
+					var _HookedObjectMass = HookObject.HookedObject.Mass;
+					var _CombinedMass = _HookedObjectMass + Mass;
+					
+					var _HookedObjectTugSpeed = AlongRopeSpeed * Mass/_CombinedMass;
+					AlongRopeSpeed = AlongRopeSpeed * _HookedObjectMass/_CombinedMass;
+					
+					//Apply tug speed to HookedObject
+					HookObject.HookedObject.HoriSpeed += _HookedObjectTugSpeed * dcos(RopeAngle);
+					HookObject.HookedObject.VertSpeed -= _HookedObjectTugSpeed * dsin(RopeAngle);
+				}
+				else
+				{
+					AlongRopeSpeed = 0;
+				}
 			}
-			else
-			{
-				AlongRopeSpeed = 0;
-			}
+			
+			HoriSpeed += AlongRopeSpeed * dcos(RopeAngle);
+			VertSpeed -= AlongRopeSpeed * dsin(RopeAngle);
 			
 		}	
 		else
@@ -271,7 +295,8 @@ if(HookObject != noone)
 // 3) Updating coords (and some other stuff)
 //
 
-// Inherit parent event (for applying speed bounds, collison checks, and update coords)
+// Inherit parent(oCollidable) event 
+// (for applying speed bounds, collison checks, and update coords)
 event_inherited();
 
 //Animation

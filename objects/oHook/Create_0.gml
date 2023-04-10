@@ -6,3 +6,4 @@ Hooked = 0;
 Taught = 0;
 
 PlayerObject = oPlayer;
+HookedObject = noone;
