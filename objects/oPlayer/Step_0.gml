@@ -174,7 +174,7 @@ if(KeyJump)
 	var _IsNormalJumpPossible = 0;
 	
 	//Rope Tug Jump
-	if(HookObject != noone)
+	if(HookObject != noone && 0) //TODO: Remove "&& 0" to enable tug jump
 	{
 		if(HookObject.Hooked == 1) && (HookObject.Taught == 1)
 		{	
