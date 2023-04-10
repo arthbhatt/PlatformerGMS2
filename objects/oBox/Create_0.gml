@@ -4,7 +4,7 @@
 // Inherit the parent event
 event_inherited();
 
-Grv = 0.9;
+Grv = 0.5;
 
 //Mass vars
 Mass = 25;
