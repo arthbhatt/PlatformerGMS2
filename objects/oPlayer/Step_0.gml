@@ -1,7 +1,10 @@
 /// @description Core Player Logic
 
+//TODO: Define keyboard bindings
+var _KBindLeft = vk_left;
+
 //Get Player Input
-KeyLeft = keyboard_check(vk_left);
+KeyLeft = keyboard_check(_KBindLeft);
 KeyRight = keyboard_check(vk_right);
 KeyJump = keyboard_check_pressed(vk_space) || gamepad_button_check_pressed(0, gp_shoulderl) || gamepad_button_check_pressed(0, gp_face1); //gp_shoulderl
 
@@ -85,6 +88,18 @@ else if(_Move < 0)
 	HandObject.HoldingAngle = 180 - 45; //180
 }
 
+//
+// Physics Calculation 
+// There are three main phases to it-
+// 1) Updating acceleration
+// 2) Updating speeds
+// 3) Updating coords
+//
+
+//
+// 1) Updating Acceleration
+//
+
 //Setting horizontal acceleration and horizontal friction values based on where oPlayer is
 var _HAccel = 0;
 var _HFriction = 0;
@@ -99,6 +114,10 @@ else
 	_HAccel = AirAccel;
 	_HFriction = AirFriction;
 }
+
+//
+// 2) Updating Speeds
+//
 
 // Inertia calculation.
 if( _Move != 0 )
@@ -248,54 +267,12 @@ if(HookObject != noone)
 	}
 }
 
+//
+// 3) Updating coords (and some other stuff)
+//
 
-//Apply speed bounds
-if(abs(HoriSpeed) > HoriSpeedMax)
-{
-	HoriSpeed = sign(HoriSpeed) * HoriSpeedMax;
-}
-
-if(abs(VertSpeed) > VertSpeedMax)
-{
-	VertSpeed = sign(VertSpeed) * VertSpeedMax;
-}
-
-
-//Update Player Coords
-//The collision detection would fail if the object speeds are way high(More than 128 pixels/frame). Do a check based on "if a point lies on a line"
-//Horizontal Collision
-if(place_meeting(x+HoriSpeed, y, oWall))
-{
-	//Note: Not a fan of implementing loops for changing object coords inside an already made game loop
-	while(!place_meeting(x+sign(HoriSpeed), y, oWall))
-	{
-		x += sign(HoriSpeed);
-	}
-	HoriSpeed = 0;
-}
-x += HoriSpeed;
-	
-//Vertical Collision
-if(place_meeting(x, y+VertSpeed, oWall))
-{
-	//Note: Not a fan of implementing loops for changing object coords inside an already made game loop
-	while(!place_meeting(x, y+sign(VertSpeed), oWall))
-	{
-		y += sign(VertSpeed);
-	}
-	VertSpeed = 0;
-}
-y += VertSpeed;
-
-
-
-//Detect wall clipping
-if(place_meeting(x, y, oWall)) 
-{
-	show_debug_message("Wall Clipping detected!!!"); 
-	//game_end();
-}
-
+// Inherit parent event (for applying speed bounds, collison checks, and update coords)
+event_inherited();
 
 //Animation
 /*
