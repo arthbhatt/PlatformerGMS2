@@ -1,3 +1,11 @@
+* Pause everything when trying to aim the shooter
+* Update the control scheme, so shooter aiming can be done with left analog stick.
+	-> There are multiple reasons of doing this:
+		i) Aiming is difficult, and might break the flow of the game. So, want to minimize it during 				   platforming sections. And if it is minimized, dedicating right analog stick to it requires a huge 			   sacrifice of not using the face buttons (A,B,X,Y).
+		ii) Controlling two analog sticks might be confusing.
+	-> Can't remove the aiming entirely, so how to incorporate it?
+		Ori is a game which also requires aiming but it maps it on the left analog stick which already 				controls the player movement. 
+		So, press 'B' to enter aiming mode. Then, use left analog stick to aim.
 * Also try fixing the aiming to just 8 directions (multiples of 45). Might be easier to control.
 * Update collision detection to remove the loop and make the player directly snap to the final position.
 * Learn how to write scripts in gamemaker, so the code can be more modular

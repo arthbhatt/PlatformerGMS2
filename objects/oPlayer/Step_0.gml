@@ -174,6 +174,8 @@ if(KeyJump)
 	var _IsNormalJumpPossible = 0;
 	
 	//Rope Tug Jump
+	//TODO: When hooking some light object, the player should not move when this is done. 
+	//      Instead the object should be hurled in the direction of the rope.
 	if(HookObject != noone && 0) //TODO: Remove "&& 0" to enable tug jump
 	{
 		if(HookObject.Hooked == 1) && (HookObject.Taught == 1)

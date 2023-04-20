@@ -1,0 +1,5 @@
+Create a object having common physics
+This can be inherited to create player object, enemies and misc objects like boxes
+
+What should the common object implement?
+Has basic movement control and collison
