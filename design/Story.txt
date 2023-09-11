@@ -3,6 +3,7 @@ Medieval fantasy setting. You are a lowly toilet cleaner, named Jose, for the Ki
 Only equipped with plungers, they are your fighting sticks and you can scale up walls. Thus begins your arduous climb up the fort. Along the way you pick up some rope as well. With the rope tied to your plunger, victory cannot be any closer. Throw the plunger on to walls and platforms to swing. It can also be thrown on enemies and objects to swing them around.
 
 Initial Levels:
+Royal toilets - You start from this place, unclogging toilets. You can continue doing so to your hearts content and keep getting pennies for your work. But if tired of this meanial work, you can venture out in the forest in the search for lost soldiers. NPC soldiers in the area can fill you in about the ongoing war.
 Forest
 Marshy Lands/Moat with crocodiles
 Fort - Finally the emperor would escape on his dragon at the end of this level
