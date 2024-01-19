@@ -1,6 +1,6 @@
 /// @description Insert description here
 // You can write your code in this editor
-
+/*
 //TODO Start: Temp Code, transfer to a script to avoid duplication
 var _HFriction = 0.3;
 //Appling horizontal friction
@@ -22,6 +22,7 @@ if( abs(HoriSpeed) != 0 )
 //Applying Vertical Acceleration
 var _VAccel = Grv;
 VertSpeed += _VAccel;
+*/
 
 // Inherit the parent event
 event_inherited();

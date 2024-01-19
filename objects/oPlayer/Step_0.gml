@@ -260,26 +260,50 @@ if(HookObject != noone)
 			
 			// Allow the rope to go slack, if moving along its direction
 			AlongRopeSpeed = PlayerSpeed * dcos(BetweenPlayerDirectionAndRopeAngle);
-			 //Moving opposite to the direction of rope, so apply momentum conservation
-			 //TODO: Consider HookedObject's speed. So, if oPlayer fires hook at a heavy moving object, it should pull oPlayer along
-			if(AlongRopeSpeed > 0)
+			
+			var _ResultantAlongRopeSpeed = AlongRopeSpeed;
+			
+			if(HookObject.HookedObject.object_index == oBox)
+			{
+				var _HookedObjectDirection = arctan2(-1*HookObject.HookedObject.VertSpeed, HookObject.HookedObject.HoriSpeed) * 180/pi;
+				var _HookedObjectSpeed = sqrt(power(HookObject.HookedObject.VertSpeed, 2) + power(HookObject.HookedObject.HoriSpeed, 2));
+		
+				var _BetweenHookedObjectDirectionAndRopeAngle = _HookedObjectDirection - RopeAngle;
+			
+				//Keep the speed tangent to rope's direction as it is
+				var _HookedObjectTangentToRopeSpeed = _HookedObjectSpeed * dsin(_BetweenHookedObjectDirectionAndRopeAngle);
+				var _HookedObjectTangentToRopeAngle = RopeAngle + 90;
+		
+				HookObject.HookedObject.HoriSpeed = _HookedObjectTangentToRopeSpeed * dcos(_HookedObjectTangentToRopeAngle);
+				HookObject.HookedObject.VertSpeed = -1* _HookedObjectTangentToRopeSpeed * dsin(_HookedObjectTangentToRopeAngle);
+			
+				var _HookedObjectAlongRopeSpeed = _HookedObjectSpeed * dcos(_BetweenHookedObjectDirectionAndRopeAngle);
+				
+				_ResultantAlongRopeSpeed += _HookedObjectAlongRopeSpeed;
+			}
+			
+			//Moving opposite to the direction of rope, so apply momentum conservation
+			//TODO: Consider HookedObject's speed. So, if oPlayer fires hook at a heavy moving object, it should pull oPlayer along
+			if(_ResultantAlongRopeSpeed > 0)
 			{
 				if(HookObject.HookedObject.object_index == oBox)
 				{
 					var _HookedObjectMass = HookObject.HookedObject.Mass;
 					var _CombinedMass = _HookedObjectMass + Mass;
 					
-					var _HookedObjectTugSpeed = AlongRopeSpeed * Mass/_CombinedMass;
+					_HookedObjectAlongRopeSpeed = AlongRopeSpeed * Mass/_CombinedMass;
 					AlongRopeSpeed = AlongRopeSpeed * _HookedObjectMass/_CombinedMass;
-					
-					//Apply tug speed to HookedObject
-					HookObject.HookedObject.HoriSpeed += _HookedObjectTugSpeed * dcos(RopeAngle);
-					HookObject.HookedObject.VertSpeed -= _HookedObjectTugSpeed * dsin(RopeAngle);
 				}
 				else
 				{
 					AlongRopeSpeed = 0;
 				}
+			}
+			
+			if(HookObject.HookedObject.object_index == oBox)
+			{
+				HookObject.HookedObject.HoriSpeed += _HookedObjectAlongRopeSpeed * dcos(RopeAngle);
+				HookObject.HookedObject.VertSpeed -= _HookedObjectAlongRopeSpeed * dsin(RopeAngle);
 			}
 			
 			HoriSpeed += AlongRopeSpeed * dcos(RopeAngle);
